@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">UpDown</string>
+    <string name="game_view_content_description">GameView</string>
 </resources>

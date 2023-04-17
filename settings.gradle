@@ -5,12 +5,18 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+include ':unityLibrary'
+project (':unityLibrary').projectDir=new File('C:\\Users\\HP\\Desktop\\Filter\\unityLibrary')
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
+        flatDir {
+            dirs "${project(':unityLibrary').projectDir}/libs"
+        }
     }
 }
 rootProject.name = "UpDown"
 include ':app'
+

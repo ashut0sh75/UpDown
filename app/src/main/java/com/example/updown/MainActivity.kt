@@ -16,7 +16,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.example.updown.databinding.ActivityMainBinding
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -152,7 +151,7 @@ class MainActivity : AppCompatActivity() {
     private fun selectImage() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Select Image Source")
-        builder.setItems(arrayOf("Gallery", "Camera")) { _, which ->
+        builder.setItems(arrayOf("Gallery", "Camera", "AR Filters")) { _, which ->
             when (which) {
                 0 -> {
                     // Launch the image picker from the gallery
@@ -174,6 +173,10 @@ class MainActivity : AppCompatActivity() {
                     cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
                     startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE)
                 }
+                2->{
+                    val intent = Intent(this@MainActivity, MainUnityActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
         val dialog = builder.create()
@@ -181,6 +184,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
